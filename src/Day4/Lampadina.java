@@ -3,11 +3,11 @@ package Day4;
 public class Lampadina {
     private Stato stato;
     private static Corrente impianto;
-    private int maxClicksSuppoted;
+    private int maxClicksSupported;
     private int currentClicks = 0;
 
-    public Lampadina(int maxClicksSuppoted, Corrente impianto){
-        this.maxClicksSuppoted = maxClicksSuppoted;
+    public Lampadina(int maxClicksSupported, Corrente impianto){
+        this.maxClicksSupported = maxClicksSupported;
         this.stato = Stato.SPENTA;
         this.impianto = impianto;
     }
@@ -20,7 +20,7 @@ public class Lampadina {
     }
 
     public void click(){
-        if(currentClicks >= maxClicksSuppoted){
+        if(currentClicks >= maxClicksSupported){
             this.stato = Stato.ROTTA;
             return;
         }
