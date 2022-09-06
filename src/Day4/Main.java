@@ -25,8 +25,9 @@ public class Main {
 //        System.out.println(cerchio.getArea());
 
         //Lampadina
-        Lampadina lampadina = new Lampadina(2);
-        Lampadina lampadina1 = new Lampadina(5);
+        Corrente corrente = Corrente.STACCARE;
+        Lampadina lampadina = new Lampadina(1, corrente);
+        Lampadina lampadina1 = new Lampadina(5, corrente);
         System.out.println("Lampadina: " + lampadina.stato()); //SPENTA
         System.out.println("Lampadina1: " + lampadina1.stato()); //SPENTA
 
@@ -37,17 +38,17 @@ public class Main {
         System.out.println("Lampadina1: " + lampadina1.stato()); //ACCESA
 
 
-        Lampadina.staccareRiattacareImpianto(); // STACCARE
+        corrente.staccareRiattacareImpianto(); // STACCARE
         System.out.println("Lampadina: " + lampadina.stato()); //SPENTA
         System.out.println("Lampadina1: " + lampadina1.stato()); //SPENTA
 
 
         lampadina.click();
-        Lampadina.staccareRiattacareImpianto(); //ATTACCARE
+        corrente.staccareRiattacareImpianto(); //ATTACCARE
         System.out.println("Lampadina: " + lampadina.stato()); //ROTTA
-        System.out.println("Lampadina1: " + lampadina1.stato()); //SPENTA
+        System.out.println("Lampadina1: " + lampadina1.stato()); //ACCESA
 
-        usaLampadina(lampadina);
+//        usaLampadina(lampadina);
 
         //Veicolo-Automobile-Autocarro
 //        AutoMobile automobile = new AutoMobile("cf123rm", 4, 4);

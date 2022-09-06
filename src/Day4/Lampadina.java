@@ -2,21 +2,18 @@ package Day4;
 
 public class Lampadina {
     private Stato stato;
-    private static Corrente corrente;
+    private static Corrente impianto;
     private int maxClicksSuppoted;
     private int currentClicks = 0;
 
-    public Lampadina(int maxClicksSuppoted){
+    public Lampadina(int maxClicksSuppoted, Corrente impianto){
         this.maxClicksSuppoted = maxClicksSuppoted;
         this.stato = Stato.SPENTA;
-    }
-
-    public static void staccareRiattacareImpianto(){
-        corrente = (corrente== Corrente.STACCARE) ? Corrente.ATTACCARE : Corrente.STACCARE;
+        this.impianto = impianto;
     }
 
     public Stato stato(){
-        if(corrente== Corrente.STACCARE && stato==Stato.ACCESA){
+        if(impianto.getCurrentStatus()== Corrente.STACCARE && stato==Stato.ACCESA){
             return Stato.SPENTA;
         }
         return this.stato;
