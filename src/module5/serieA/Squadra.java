@@ -12,14 +12,14 @@ public class Squadra {
  * gol fatti
  * gol subiti
  */
-    private String id;
+    private int id;
     private String nome;
     private List<Giocatore> rosaGiocatori;
     private int punteggio;
     private int golFatti;
     private int golSubiti;
 
-    public Squadra(String id, String nome) {
+    public Squadra(int id, String nome) {
         this.id = id;
         this.nome = nome;
         this.rosaGiocatori = new ArrayList<>(25);

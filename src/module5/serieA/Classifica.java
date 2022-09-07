@@ -11,6 +11,10 @@ public class Classifica {
         this.squadre = new ArrayList<>(numeroSquadre);
     }
 
+    public void addSquadra(Squadra squadra){
+        squadre.add(squadra);
+    }
+
     public void esitoPartita(Squadra squadraCasa, int golCasa, Squadra squadraOspite, int golOspite){
         if(golCasa==golOspite){
             squadraCasa.increasePunteggio(1);
@@ -37,29 +41,31 @@ public class Classifica {
         });
 
         for (Squadra s : squadre){
-            System.out.println(s.getNome() + " punteggio: " + s.getPunteggio());
+            System.out.println(s.getNome() + " punteggio: " + s.getPunteggio() + " golFatti: " + s.getGolFatti() + " golSubiti: " + s.getGolSubiti());
         }
     }
 
-    public Squadra getMigliorAttacco(){
+    public void getMigliorAttacco(){
         Squadra temp = null;
         int golFatti = Integer.MIN_VALUE;
         for(Squadra s : squadre){
             if(s.getGolFatti() > golFatti){
+                golFatti=s.getGolFatti();
                 temp = s;
             }
         }
-        return temp;
+        System.out.println("MigliorAttacco: " + temp.getNome() + " " + temp.getGolFatti());
     }
 
-    public Squadra getPeggiorDifesa(){
+    public void getPeggiorDifesa(){
         Squadra temp = null;
         int golSubiti = Integer.MIN_VALUE;
         for(Squadra s : squadre){
             if(s.getGolSubiti() > golSubiti){
+                golSubiti = s.getGolSubiti();
                 temp = s;
             }
         }
-        return temp;
+        System.out.println("PeggiorDifesa: " + temp.getNome() + " " + temp.getGolSubiti());
     }
 }
