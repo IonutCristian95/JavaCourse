@@ -18,6 +18,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String direction;
         Directions tempDirectionObject = null;
+        boolean endgame = false;
 
         while(true){
             map.printMap();
@@ -40,8 +41,10 @@ public class Main {
                     continue;
             }
 
-            if(map.validMove(tempDirectionObject)){
-                System.out.println("Moved");
+            endgame = map.foundExit(tempDirectionObject);
+            if (endgame){
+                System.out.println("You won");
+                return;
             }
         }
     }

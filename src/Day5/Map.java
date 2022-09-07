@@ -82,38 +82,35 @@ public class Map {
         }
     }
 
-    public boolean validMove(Directions direction){
-        System.out.println(player.getxPos()+""+player.getyPos());
+    public boolean foundExit(Directions direction){
         int playerX = player.getxPos();
         int playerY = player.getyPos();
 
         MapObject newPosition;
-        if(direction==Directions.W && playerX>0){
+        if(direction.equals(Directions.W) && playerX>0){
             newPosition = mapObjectHashtable.get((playerX - 1) + "" + playerY);
             if(newPosition.getSymbol().getSymbolString().equals(Symbol.SPACE.getSymbolString())){
                 switchPositions(player, newPosition);
             }
-        }else if (direction==Directions.S && (playerX<this.rows-1)){
+        }else if (direction.equals(Directions.S) && (playerX<this.rows-1)){
             newPosition = mapObjectHashtable.get((playerX + 1) + "" + playerY);
             if(newPosition.getSymbol().getSymbolString().equals(Symbol.SPACE.getSymbolString())){
                 switchPositions(player, newPosition);
             }
-        }else if (direction==Directions.A && playerY>0){
+        }else if (direction.equals(Directions.A) && playerY>0){
             newPosition = mapObjectHashtable.get(playerX + "" + (playerY-1));
             if(newPosition.getSymbol().getSymbolString().equals(Symbol.SPACE.getSymbolString())){
                 switchPositions(player, newPosition);
             }
-        }else if (direction==Directions.D && (playerY<this.columns-1)){
+        }else if (direction.equals(Directions.D) && (playerY<this.columns-1)){
             newPosition = mapObjectHashtable.get(playerX + "" + (playerY+1));
             if(newPosition.getSymbol().getSymbolString().equals(Symbol.SPACE.getSymbolString())){
                 switchPositions(player, newPosition);
             }
         }else{
-            System.out.println("Blocked");
             return false;
         }
-
-        return true;
+        return newPosition.getSymbol().equals(Symbol.EXIT);
     }
 
     public void switchPositions(MapObject obj1, MapObject obj2){
@@ -134,7 +131,8 @@ public class Map {
         obj2.setMapPositionCode(tempMapCode);
     }
 
-    private boolean pathExists(){
+    private boolean pathExists(Player playerCurrentPosition){
+
         return false;
     }
 }
