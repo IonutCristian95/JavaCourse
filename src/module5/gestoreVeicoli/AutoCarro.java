@@ -1,4 +1,4 @@
-package Day4;
+package module5.gestoreVeicoli;
 
 public class AutoCarro extends Veicolo{
     private int capacitaMassima;

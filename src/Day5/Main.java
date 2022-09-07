@@ -8,9 +8,7 @@ public class Main {
         map.generateMap();
         map.generateMapObjects();
 
-
         play(map);
-
 
     }
 
