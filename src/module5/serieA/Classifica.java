@@ -1,14 +1,15 @@
 package module5.serieA;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class Classifica {
     private List<Squadra> squadre;
 
-    public Classifica(int numeroSquadre) {
-        this.squadre = new ArrayList<>(numeroSquadre);
+    public Classifica() {
+        this.squadre = new ArrayList<>();
     }
 
     public void addSquadra(Squadra squadra){
@@ -25,11 +26,11 @@ public class Classifica {
             squadraOspite.increasePunteggio(3);
         }
 
-        squadraCasa.setGolFatti(golCasa);
-        squadraCasa.setGolSubiti(golOspite);
+        squadraCasa.increaseGolFatti(golCasa);
+        squadraCasa.increaseGolSubiti(golOspite);
 
-        squadraOspite.setGolFatti(golOspite);
-        squadraOspite.setGolSubiti(golCasa);
+        squadraOspite.increaseGolFatti(golOspite);
+        squadraOspite.increaseGolSubiti(golCasa);
     }
 
     public void getClassifica(){
@@ -40,8 +41,10 @@ public class Classifica {
             }
         });
 
+        Collections.reverse(this.squadre);
+        System.out.println("Classifica: ");
         for (Squadra s : squadre){
-            System.out.println(s.getNome() + " punteggio: " + s.getPunteggio() + " golFatti: " + s.getGolFatti() + " golSubiti: " + s.getGolSubiti());
+            System.out.printf("%12s | punteggio:  %d | golFatti: %d | golSubiti: %d\n", s.getNome(), s.getPunteggio(), s.getGolFatti(), s.getGolSubiti());
         }
     }
 

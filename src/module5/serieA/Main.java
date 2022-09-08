@@ -2,7 +2,9 @@ package module5.serieA;
 
 public class Main {
     public static void main(String[] args) {
-        Classifica classifica = new Classifica(5);
+        Classifica classifica = new Classifica();
+        Giocatore giocatoreJuve = new Giocatore(1, "Federico", "Chiesa");
+        Giocatore giocatoreJuve1 = new Giocatore(2, "Angel", "Di Maria");
 
         Squadra squadra = new Squadra(1,"Atalanta");
         Squadra squadra1 = new Squadra(2,"Napoli");
@@ -34,10 +36,15 @@ public class Main {
         classifica.esitoPartita(squadra2, 0, squadra, 5);
 
 
-        classifica.esitoPartita(squadra6, 6, squadra1, 2);
+        classifica.esitoPartita(squadra6, 4, squadra1, 0);
 
         classifica.getClassifica();
         classifica.getMigliorAttacco();
         classifica.getPeggiorDifesa();
+
+        squadra6.addGiocatore(giocatoreJuve);
+        squadra6.addGiocatore(giocatoreJuve1);
+
+        squadra6.printRosaDiGiocatori();
     }
 }

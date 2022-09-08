@@ -11,15 +11,9 @@ public class Giocatore {
         this.cognome = cognome;
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public String toString() {
+        return "Id: " + this.id + " Nome: " + this.nome + " Cognome: " + this.cognome;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
 }

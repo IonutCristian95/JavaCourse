@@ -14,7 +14,7 @@ public class Squadra {
     public Squadra(int id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.rosaGiocatori = new ArrayList<>(25);
+        this.rosaGiocatori = new ArrayList<>();
         this.punteggio = 0;
         this.golFatti = 0;
         this.golSubiti = 0;
@@ -36,7 +36,7 @@ public class Squadra {
         return golFatti;
     }
 
-    public void setGolFatti(int golFatti) {
+    public void increaseGolFatti(int golFatti) {
         this.golFatti += golFatti;
     }
 
@@ -44,7 +44,20 @@ public class Squadra {
         return golSubiti;
     }
 
-    public void setGolSubiti(int golSubiti) {
+    public void increaseGolSubiti(int golSubiti) {
         this.golSubiti += golSubiti;
+    }
+
+    public void printRosaDiGiocatori(){
+        System.out.println("Squadra " + this.getNome());
+        for(Giocatore giocatore : rosaGiocatori){
+            System.out.println(giocatore);
+        }
+    }
+
+    public void addGiocatore(Giocatore giocatore){
+        if(!giocatore.equals(null)){
+            rosaGiocatori.add(giocatore);
+        }
     }
 }
