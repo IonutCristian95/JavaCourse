@@ -68,4 +68,5 @@ public class Classifica {
         }
         System.out.println("PeggiorDifesa: " + temp.getNome() + " " + temp.getGolSubiti());
     }
+
 }

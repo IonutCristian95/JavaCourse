@@ -1,8 +1,5 @@
 package module5.serieA;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
         Classifica classifica = new Classifica(5);

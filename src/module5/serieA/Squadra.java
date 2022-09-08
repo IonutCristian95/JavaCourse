@@ -4,14 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Squadra {
-/**
- * id
- * nome
- * rosa di giocatori
- * punteggio
- * gol fatti
- * gol subiti
- */
     private int id;
     private String nome;
     private List<Giocatore> rosaGiocatori;
