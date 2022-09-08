@@ -35,7 +35,6 @@ public class Main {
         classifica.esitoPartita(squadra3, 0, squadra5, 4);
         classifica.esitoPartita(squadra2, 0, squadra, 5);
 
-
         classifica.esitoPartita(squadra6, 4, squadra1, 0);
 
         classifica.getClassifica();
