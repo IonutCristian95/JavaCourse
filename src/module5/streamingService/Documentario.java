@@ -9,6 +9,6 @@ public class Documentario extends ProdottoCatalogo{
     @Override
     public String toString() {
         return "Documentario: " + super.getTitolo() + " Anno: " + super.getAnno() + " Genere: " + super.getGenere() +
-                "\nOriginale: " + super.isOriginale() + " PG: " + super.getPg();
+                "\nOriginale: " + super.isOriginale() + " PG: " + super.getPg() + " Valutazione: " + super.getValutazione();
     }
 }

@@ -1,7 +1,6 @@
 package module5.streamingService;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Profilo {
     private String email;
@@ -18,13 +17,14 @@ public class Profilo {
 
     public void addUtente(Utente utente){
         if (!utente.equals(null)){
+            utente.setProfile(this);
             utenti.add(utente);
         }
     }
 
     public void printUtenti(){
         for (Utente utente : utenti){
-            System.out.println(utente.getNome());
+            System.out.println(utente);
         }
     }
 
@@ -46,7 +46,6 @@ public class Profilo {
         if (oldPassw==null || oldPassw.length() == 0){
             return;
         }
-
     }
 
     public void setTipoDiOferta(Abbonamento tipoDiOferta) {
@@ -56,4 +55,9 @@ public class Profilo {
     public Abbonamento getTipoDiOferta() {
         return tipoDiOferta;
     }
+
+    public List<Utente> getUtenti() {
+        return utenti;
+    }
+
 }

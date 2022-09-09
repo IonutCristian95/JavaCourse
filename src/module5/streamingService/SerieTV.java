@@ -14,9 +14,9 @@ public class SerieTV extends ProdottoCatalogo{
 
     @Override
     public String toString() {
-        return "Documentario: " + super.getTitolo() + " Anno: " + super.getAnno() + " Genere: " + super.getGenere() +
+        return "SerieTV: " + super.getTitolo() + " Anno: " + super.getAnno() + " Genere: " + super.getGenere() +
                 "\nOriginale: " + super.isOriginale() + " PG: " + super.getPg() + " Stagioni: " + this.getStagioni() +
-                " Episodi per Stagione: " + this.getEpisodiPerStagione();
+                " Episodi per Stagione: " + this.getEpisodiPerStagione() + " Valutazione: " + super.getValutazione();
     }
 
     public int getStagioni() {
@@ -24,7 +24,9 @@ public class SerieTV extends ProdottoCatalogo{
     }
 
     public void setStagioni(int stagioni) {
-        this.stagioni = stagioni;
+        if(stagioni > 0){
+            this.stagioni = stagioni;
+        }
     }
 
     public int getEpisodiPerStagione() {
@@ -32,6 +34,8 @@ public class SerieTV extends ProdottoCatalogo{
     }
 
     public void setEpisodiPerStagione(int episodiPerStagione) {
-        this.episodiPerStagione = episodiPerStagione;
+        if(episodiPerStagione > 0){
+            this.episodiPerStagione = episodiPerStagione;
+        }
     }
 }

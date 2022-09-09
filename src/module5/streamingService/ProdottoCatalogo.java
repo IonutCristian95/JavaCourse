@@ -1,6 +1,7 @@
 package module5.streamingService;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 public abstract class ProdottoCatalogo {
@@ -10,6 +11,7 @@ public abstract class ProdottoCatalogo {
     private Genere genere;
     private String pg;
     private boolean originale;
+    private Hashtable<Utente, Integer> valutazione;
 
     public ProdottoCatalogo(String titolo, int anno, Genere genere, String pg, boolean originale) {
         this.titolo = titolo;
@@ -18,6 +20,7 @@ public abstract class ProdottoCatalogo {
         this.genere = genere;
         this.pg = pg;
         this.originale = originale;
+        this.valutazione = new Hashtable<>();
     }
 
     public String getTitolo() {
@@ -40,16 +43,45 @@ public abstract class ProdottoCatalogo {
         return originale;
     }
 
-    public void addCast(String castElement){
-        if (!cast.equals(null)){
+    public void addCast(String castElement) {
+        if (!castElement.equals(null)) {
             cast.add(castElement);
         }
     }
 
-    public void printCast(){
-        for(String element : cast){
+    public void printCast() {
+        for (String element : cast) {
             System.out.println(element);
         }
+    }
+
+    public void setValutazione(Utente utente, int value) {
+        if(value >= 1 && value <= 5){
+            valutazione.put(utente, value);
+        }
+    }
+
+    public void printValutazione(){
+        for(Utente utente : valutazione.keySet()){
+            System.out.println(utente.getNome() + " given " + valutazione.get(utente));
+        }
+    }
+
+    public int getValutazione() {
+        int temp = 0;
+        int counter = 0;
+        int result = 0;
+        try {
+            for(Utente utente : valutazione.keySet()){
+                temp += valutazione.get(utente);
+                counter++;
+            }
+            result = ((int)temp/counter);
+        }catch (ArithmeticException e){
+            return 0;
+        }
+
+        return result;
     }
 
     @Override
