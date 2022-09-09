@@ -6,44 +6,44 @@ public class Main {
         Giocatore giocatoreJuve = new Giocatore(1, "Federico", "Chiesa");
         Giocatore giocatoreJuve1 = new Giocatore(2, "Angel", "Di Maria");
 
-        Squadra squadra = new Squadra(1,"Atalanta");
-        Squadra squadra1 = new Squadra(2,"Napoli");
-        Squadra squadra2 = new Squadra(3,"Milan");
-        Squadra squadra3 = new Squadra(4,"Udinese");
-        Squadra squadra4 = new Squadra(5,"Roma");
-        Squadra squadra5 = new Squadra(6,"Torino");
-        Squadra squadra6 = new Squadra(7,"Juventus");
-        Squadra squadra7 = new Squadra(8,"Inter");
-        Squadra squadra8 = new Squadra(9,"Lazio");
-        Squadra squadra9 = new Squadra(10,"Salernitana");
+        Squadra atalanta = new Squadra(1,"Atalanta");
+        Squadra napoli = new Squadra(2,"Napoli");
+        Squadra milan = new Squadra(3,"Milan");
+        Squadra udinese = new Squadra(4,"Udinese");
+        Squadra roma = new Squadra(5,"Roma");
+        Squadra torino = new Squadra(6,"Torino");
+        Squadra juventus = new Squadra(7,"Juventus");
+        Squadra inter = new Squadra(8,"Inter");
+        Squadra lazio = new Squadra(9,"Lazio");
+        Squadra salernitana = new Squadra(10,"Salernitana");
 
 
-        classifica.addSquadra(squadra);
-        classifica.addSquadra(squadra1);
-        classifica.addSquadra(squadra2);
-        classifica.addSquadra(squadra3);
-        classifica.addSquadra(squadra4);
-        classifica.addSquadra(squadra5);
-        classifica.addSquadra(squadra6);
-        classifica.addSquadra(squadra7);
-        classifica.addSquadra(squadra8);
-        classifica.addSquadra(squadra9);
+        classifica.addSquadra(atalanta);
+        classifica.addSquadra(napoli);
+        classifica.addSquadra(milan);
+        classifica.addSquadra(udinese);
+        classifica.addSquadra(roma);
+        classifica.addSquadra(torino);
+        classifica.addSquadra(juventus);
+        classifica.addSquadra(inter);
+        classifica.addSquadra(lazio);
+        classifica.addSquadra(salernitana);
 
-        classifica.esitoPartita(squadra1, 6, squadra8, 1);
-        classifica.esitoPartita(squadra6, 3, squadra4, 2);
-        classifica.esitoPartita(squadra9, 3, squadra7, 3);
-        classifica.esitoPartita(squadra3, 0, squadra5, 4);
-        classifica.esitoPartita(squadra2, 0, squadra, 5);
+        classifica.esitoPartita(napoli, 6, lazio, 1);
+        classifica.esitoPartita(juventus, 3, roma, 2);
+        classifica.esitoPartita(salernitana, 3, inter, 3);
+        classifica.esitoPartita(udinese, 0, torino, 4);
+        classifica.esitoPartita(milan, 0, atalanta, 5);
 
-        classifica.esitoPartita(squadra6, 4, squadra1, 0);
+        classifica.esitoPartita(juventus, 4, napoli, 0);
 
         classifica.getClassifica();
         classifica.getMigliorAttacco();
         classifica.getPeggiorDifesa();
 
-        squadra6.addGiocatore(giocatoreJuve);
-        squadra6.addGiocatore(giocatoreJuve1);
+        juventus.addGiocatore(giocatoreJuve);
+        juventus.addGiocatore(giocatoreJuve1);
 
-        squadra6.printRosaDiGiocatori();
+        juventus.printRosaDiGiocatori();
     }
 }
