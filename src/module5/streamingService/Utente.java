@@ -1,5 +1,7 @@
 package module5.streamingService;
 
+import module5.distributoreBevande.Prodotto;
+
 import java.util.*;
 
 public class Utente {
@@ -66,6 +68,10 @@ public class Utente {
         if(notAbbonamentoStandard()){
             return;
         }
+        if(myList.contains(prod)){
+            return ;
+        }
+        prod.increasePreferredCounter();
         myList.add(prod);
     }
 
@@ -79,7 +85,7 @@ public class Utente {
         }
     }
 
-    public void rateFilm(List<ProdottoCatalogo> catalogo, ProdottoCatalogo film, int valutazione){
+    public void rateFilm(List<ProdottoCatalogo> catalogo, ProdottoCatalogo prodotto, int valutazione){
         if(notAbbonamentoStandard()){
             return;
         }
@@ -87,8 +93,27 @@ public class Utente {
             return ;
         }
 
+
+        if(!myValutazione.containsKey(prodotto) && valutazione >= 3){
+            prodotto.increasePreferredCounter();
+        }else if(!myValutazione.containsKey(prodotto) && valutazione < 3){
+            prodotto.decreasePreferredCounter();
+        }else if(myValutazione.containsKey(prodotto) && (valutazione < 3)){
+            //Check if the user already voted <3 on that product
+            if(myValutazione.get(prodotto)>=3) {
+                prodotto.decreasePreferredCounter();
+            }
+        }else if(myValutazione.containsKey(prodotto) && valutazione >= 3){
+            //Check if the previous vote is <3 on that product
+            //Prevents situations where the increasePreferredCounter gets called multiple
+            // times for successive values of 3, 4, 5
+            if(myValutazione.get(prodotto) < 3){
+                prodotto.increasePreferredCounter();
+            }
+        }
+
         for(ProdottoCatalogo prod : catalogo){
-            if(prod.getTitolo().equals(film.getTitolo())){
+            if(prod.getTitolo().equals(prodotto.getTitolo())){
                 myValutazione.put(prod, valutazione);
                 prod.setValutazione(this, valutazione);
                 break;
@@ -135,29 +160,33 @@ public class Utente {
     Creare un metodo che, dato un Utente, ritorni una lista di altri prodotti in catalogo che potrebbero interessargli
     basandosi sugli elementi presenti nella sua lista e sulle sue valutazioni dei prodotti;
      */
-    public List<ProdottoCatalogo> printRaccomandazioniProdotti(Catalogo catalogo){
+    public void printRaccomandazioniProdotti(Catalogo catalogo){
         if(notAbbonamentoPremium()){
-            return null;
+            return ;
         }
         Hashtable<String, ProdottoCatalogo> temp = new Hashtable<>();
-        List<ProdottoCatalogo> alreadyRecommended = new ArrayList<>();
+        List<ProdottoCatalogo> toRecommend = new ArrayList<>();
         for(ProdottoCatalogo prod : this.myList){
             temp.putIfAbsent(prod.getGenere().toString(), prod);
             temp.putIfAbsent(prod.getClass().getSimpleName(), prod);
         }
 
+        for(ProdottoCatalogo prod : this.myValutazione.keySet()){
+            temp.putIfAbsent(prod.getGenere().toString(), prod);
+            temp.putIfAbsent(prod.getClass().getSimpleName(), prod);
+        }
+
         for(ProdottoCatalogo prod : catalogo.getCatalogo()){
-            if(temp.get(prod.getGenere().toString())!=null && (!alreadyRecommended.contains(prod))){
+            if(temp.get(prod.getGenere().toString())!=null && (!toRecommend.contains(prod))){
                 System.out.println(prod);
-                alreadyRecommended.add(prod);
+                toRecommend.add(prod);
                 continue;
             }
-            if(temp.get(prod.getClass().getSimpleName())!=null && (!alreadyRecommended.contains(prod))){
+            if(temp.get(prod.getClass().getSimpleName())!=null && (!toRecommend.contains(prod))){
                 System.out.println(prod);
-                alreadyRecommended.add(prod);
+                toRecommend.add(prod);
             }
         }
-        return alreadyRecommended;
     }
 
     /*
@@ -165,45 +194,34 @@ public class Utente {
     sugli elementi presenti nelle loro liste e sulle valutazioni dei prodotti.
      */
     public void printTopRaccomandazioniProdotti(List<Utente> utenti, Catalogo catalogo){
-        if(utenti.get(0).notAbbonamentoPremium()){
-            return ;
-        }
-        HashMap<ProdottoCatalogo, Integer> prodottiUtenti = new HashMap<>();
-        LinkedHashMap<ProdottoCatalogo, Integer> finalListRaccomandazioni = new LinkedHashMap<>();
-        //Get all movies,series,documentaries from the users and each time there is one, increase the counter
-        int appreciationCounter = 0;
-        for(Utente utente : utenti){
-            for(ProdottoCatalogo prodottoCatalogo : utente.getMyList()){
-                if(prodottiUtenti.get(prodottoCatalogo)!=null){
-                    appreciationCounter = prodottiUtenti.get(prodottoCatalogo);
-                    appreciationCounter++;
-                    prodottiUtenti.put(prodottoCatalogo, appreciationCounter);
-                }else{
-                    prodottiUtenti.put(prodottoCatalogo, 0);
-                }
+        for (Utente utente : utenti){
+            if(utente.notAbbonamentoPremium()){
+                return ;
             }
         }
-        //Save a list with alreadyRecommended products
-        List<ProdottoCatalogo> alreadyRecommended = new ArrayList<>(prodottiUtenti.keySet());
 
-        ArrayList<Integer> list = new ArrayList<>();
-        for (Map.Entry<ProdottoCatalogo, Integer> entry : prodottiUtenti.entrySet()) {
-            list.add(entry.getValue());
-        }
-        list.sort(new Comparator<Integer>() {
-            public int compare(Integer value1, Integer value2) {
-                return value1 - value2;
+        ArrayList<ProdottoCatalogo> list = new ArrayList<>(catalogo.getCatalogo());
+        list.sort(new Comparator<ProdottoCatalogo>() {
+            @Override
+            public int compare(ProdottoCatalogo o1, ProdottoCatalogo o2) {
+                return o2.getValutazione()-o1.getValutazione();
             }
         });
 
-        for (Integer str : list) {
-            for (Map.Entry<ProdottoCatalogo, Integer> entry : prodottiUtenti.entrySet()) {
-                finalListRaccomandazioni.put(entry.getKey(), str);
+        list.sort(new Comparator<ProdottoCatalogo>() {
+            @Override
+            public int compare(ProdottoCatalogo o1, ProdottoCatalogo o2) {
+                return o2.getPreferredCounter()-o1.getPreferredCounter();
             }
-        }
+        });
 
-        for(ProdottoCatalogo prod : finalListRaccomandazioni.keySet()){
+        int counter = 0;
+        for(ProdottoCatalogo prod : list){
+            if (counter > 9) {
+                break;
+            }
             System.out.println(prod);
+            counter++;
         }
 
     }

@@ -5,6 +5,7 @@ public enum Genere {
     ACTION("Action"),
     COMEDY("Comedy"),
     THRILLER("Thriller"),
+    DOCUMENTARY("Documentary"),
     WAR("War"),
     NOIR("Noir"),
     FANTASY("Fantasy"),

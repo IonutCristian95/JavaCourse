@@ -12,6 +12,8 @@ public abstract class ProdottoCatalogo {
     private String pg;
     private boolean originale;
     private Hashtable<Utente, Integer> valutazione;
+    private int preferredCounter;
+
 
     public ProdottoCatalogo(String titolo, int anno, Genere genere, String pg, boolean originale) {
         this.titolo = titolo;
@@ -21,6 +23,7 @@ public abstract class ProdottoCatalogo {
         this.pg = pg;
         this.originale = originale;
         this.valutazione = new Hashtable<>();
+        this.preferredCounter = 0;
     }
 
     public String getTitolo() {
@@ -63,7 +66,7 @@ public abstract class ProdottoCatalogo {
 
     public void printValutazione(){
         for(Utente utente : valutazione.keySet()){
-            System.out.println(utente.getNome() + " given " + valutazione.get(utente));
+            System.out.println(utente.getNome() + " voted " + valutazione.get(utente));
         }
     }
 
@@ -82,6 +85,22 @@ public abstract class ProdottoCatalogo {
         }
 
         return result;
+    }
+
+    public int getPreferredCounter() {
+        return preferredCounter;
+    }
+
+    public void setPreferredCounter(int preferredCounter) {
+        this.preferredCounter = preferredCounter;
+    }
+
+    public void increasePreferredCounter(){
+        this.preferredCounter++;
+    }
+
+    public void decreasePreferredCounter(){
+        this.preferredCounter--;
     }
 
     @Override

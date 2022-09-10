@@ -16,7 +16,7 @@ public class Profilo {
     }
 
     public void addUtente(Utente utente){
-        if (!utente.equals(null)){
+        if (utente != null && !utenti.contains(utente)){
             utente.setProfile(this);
             utenti.add(utente);
         }
@@ -42,9 +42,14 @@ public class Profilo {
 
     public void setPassword(String password) {
         String oldPassw = null;
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Insert old password: ");
-        if (oldPassw==null || oldPassw.length() == 0){
+        oldPassw = scanner.nextLine();
+        if (oldPassw==null){
             return;
+        }
+        if(oldPassw.equals(this.getPassword())){
+            this.password = password;
         }
     }
 

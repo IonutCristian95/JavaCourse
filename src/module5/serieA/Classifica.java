@@ -38,11 +38,10 @@ public class Classifica {
         this.squadre.sort(new Comparator<Squadra>(){
             @Override
             public int compare(Squadra s1, Squadra s2){
-                return s1.getPunteggio()-s2.getPunteggio();
+                return s2.getPunteggio()-s1.getPunteggio();
             }
         });
 
-        Collections.reverse(this.squadre);
         System.out.println("Classifica: ");
         for (Squadra s : squadre){
             System.out.printf("%12s | punteggio:  %d | golFatti: %d | golSubiti: %d\n", s.getNome(), s.getPunteggio(), s.getGolFatti(), s.getGolSubiti());
