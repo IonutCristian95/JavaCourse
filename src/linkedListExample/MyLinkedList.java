@@ -1,6 +1,6 @@
 package linkedListExample;
 
-public class MyLinkedList {
+public class MyLinkedList<T> {
     private Node head;
     private Node currentNode;
 
@@ -33,18 +33,18 @@ public class MyLinkedList {
         System.out.println();
     }
 
-    public Node lookup(int value){
+    public Node lookup(T value){
         Node temp = this.head;
         while(temp!=null){
-            if(temp.getValue() == value)
+            if(temp.getValue().equals(value))
                 return temp;
             temp = temp.getNext();
         }
         return null;
     }
 
-    public void insert(int position, int value){
-        Node temp = new Node(value);
+    public void insert(int position, T value){
+        Node<T> temp = new Node<>(value);
         if(position == 0){
             temp.setNext(this.head);
             this.head = temp;
@@ -67,16 +67,16 @@ public class MyLinkedList {
         add(temp);
     }
 
-    public void delete(int value){
+    public void delete(T value){
         Node currNode = this.head.getNext();
         Node previousNode = this.head;
-        if(this.head.getValue() == value){
+        if(this.head.getValue().equals(value)){
             this.head = this.head.getNext();
             return;
         }
 
         while(currNode!=null){
-            if(currNode.getValue() == value){
+            if(currNode.getValue().equals(value)){
                 if(currNode.getNext()==null){
                     this.currentNode = previousNode;
                 }

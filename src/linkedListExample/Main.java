@@ -2,10 +2,10 @@ package linkedListExample;
 
 public class Main {
     public static void main(String[] args) {
-        MyLinkedList myLinkedList = new MyLinkedList();
-        Node node1 = new Node(1);
-        Node node2 = new Node(2);
-        Node node3 = new Node(6);
+        MyLinkedList<Integer> myLinkedList = new MyLinkedList<>();
+        Node<Integer> node1 = new Node<>(1);
+        Node<Integer> node2 = new Node<>(2);
+        Node<Integer> node3 = new Node<>(6);
 
 
         myLinkedList.add(node1);
@@ -14,7 +14,7 @@ public class Main {
 
         myLinkedList.printMyLinkedList();
 
-        Node node4 = new Node(15);
+        Node<Integer> node4 = new Node<>(15);
         myLinkedList.add(node4);
         myLinkedList.printMyLinkedList();
 
