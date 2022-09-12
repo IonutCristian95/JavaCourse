@@ -78,37 +78,38 @@ public class Main {
         utente1.addToList(filmTheConjuring);
         utente1.addToList(serieMrRobot);
         utente1.addToList(filmArrival);
-        utente1.printMyList();
+//        utente1.printMyList();
 
 
         utente2.addToList(seriePeakyBlinders);
         utente2.addToList(filmTheNun);
         utente2.addToList(filmTheConjuring);
         utente2.addToList(filmArrival);
-        utente2.printMyList();
+//        utente2.printMyList();
 
 
         utente3.addToList(serieMrRobot);
         utente3.addToList(seriePeakyBlinders);
         utente3.addToList(filmArrival);
         utente3.addToList(filmRidSix);
-        utente3.printMyList();
+//        utente3.printMyList();
 
         //Test Abbonamento Premium
         profilo1.setTipoDiOferta(Abbonamento.PREMIUM);
 
-//        utente1.printRaccomandazioneGenere(catalogo, Genere.HORROR);
-//        utente1.printRaccomandazioneCategoria(catalogo, filmSavingPrivateRyan);
+//        catalogo.printRaccomandazioneGenere(utente1, Genere.HORROR);
+//        catalogo.printRaccomandazioneCategoria(utente1, filmSavingPrivateRyan);
 
-        System.out.println("***************Raccomandazioni prodotti***************");
-        utente2.printRaccomandazioniProdotti(catalogo);
 
-        System.out.println("***************Top raccomandazioni***************");
-        utente2.printTopRaccomandazioniProdotti(profilo1.getUtenti(), catalogo);
+        catalogo.printRaccomandazioniProdotti(utente2);
 
+
+        catalogo.printTopRaccomandazioniProdotti(profilo1.getUtenti());
+        utente3.rateFilm(prodotti, docNature, 4);
+        catalogo.printTopRaccomandazioniProdotti(profilo1.getUtenti());
 
         profilo1.setTipoDiOferta(Abbonamento.BASIC);
-        utente2.printTopRaccomandazioniProdotti(profilo1.getUtenti(), catalogo);//Error test - premium subscription needed
+        catalogo.printTopRaccomandazioniProdotti(profilo1.getUtenti());;//Error test - premium subscription needed
 
     }
 
