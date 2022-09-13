@@ -1,11 +1,13 @@
 package ListExample;
 
+import java.util.Arrays;
+
 public class TestLista {
 
     public static void main(String[] args) {
 
-        ListaDiInteri lista = new ListaDiInteri();
-        checkListaInteri(lista);
+//        ListaDiInteri lista = new ListaDiInteri();
+//        checkListaInteri(lista);
 
         MiaStringa stringa = new MiaStringa();
         checkMiaStringa(stringa);

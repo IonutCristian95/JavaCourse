@@ -14,10 +14,10 @@ Aggiungere l'interfaccia Lista alle classi ListaDiInteri e MiaStringa, ed implem
 
 Usare il codice di test per verificare le funzioni
      */
-    public T get(int i);
-    public boolean contains(T object);
-    public int size();
-    public void add(T object);
-    public boolean remove(int i);
-    public void clear();
+    T get(int i);
+    boolean contains(T object);
+    int size();
+    void add(T object);
+    boolean remove(int i);
+    void clear();
 }
