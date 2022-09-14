@@ -1,7 +1,6 @@
 package module5.streamingService;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class Main {
 
@@ -25,7 +24,7 @@ public class Main {
         SerieTV serieMrRobot = new SerieTV("Mr Robot", 2015, Genere.DRAMA, "VM14", false, 4, 11);
         SerieTV seriePeakyBlinders = new SerieTV("Peaky Blinders", 2013, Genere.DRAMA, "VM14", true, 6, 6);
 
-        List<ProdottoCatalogo> prodotti = new ArrayList<>();
+        HashSet<ProdottoCatalogo> prodotti = new HashSet<>();
         prodotti.add(filmTheNun);
         prodotti.add(filmTheConjuring);
         prodotti.add(filmSavingPrivateRyan);
@@ -97,19 +96,19 @@ public class Main {
         //Test Abbonamento Premium
         profilo1.setTipoDiOferta(Abbonamento.PREMIUM);
 
-//        catalogo.printRaccomandazioneGenere(utente1, Genere.HORROR);
-//        catalogo.printRaccomandazioneCategoria(utente1, filmSavingPrivateRyan);
+//        utente1.printRaccomandazioneGenere(catalogo, Genere.HORROR);
+//        utente1.printRaccomandazioneCategoria(catalogo, filmSavingPrivateRyan);
 
 
-        catalogo.printRaccomandazioniProdotti(utente2);
+        utente2.printRaccomandazioniProdotti(catalogo);
 
 
-        catalogo.printTopRaccomandazioniProdotti(profilo1.getUtenti());
+        utente2.printTopRaccomandazioniProdotti(catalogo);
         utente3.rateFilm(prodotti, docNature, 4);
-        catalogo.printTopRaccomandazioniProdotti(profilo1.getUtenti());
+        utente2.printTopRaccomandazioniProdotti(catalogo);
 
         profilo1.setTipoDiOferta(Abbonamento.BASIC);
-        catalogo.printTopRaccomandazioniProdotti(profilo1.getUtenti());;//Error test - premium subscription needed
+        utente2.printTopRaccomandazioniProdotti(catalogo);;//Error test - premium subscription needed
 
     }
 

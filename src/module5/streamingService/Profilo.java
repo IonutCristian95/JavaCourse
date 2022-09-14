@@ -2,20 +2,20 @@ package module5.streamingService;
 
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Profilo {
     private String email;
     private String password;
     private Abbonamento tipoDiOferta;
-    private List<Utente> utenti;
+    private HashSet<Utente> utenti;
 
     public Profilo(String email, String password, Abbonamento tipoDiOferta) {
         this.email = email;
         this.password = password;
         this.tipoDiOferta = tipoDiOferta;
-        this.utenti = new ArrayList<>();
+        this.utenti = new HashSet<>();
     }
 
     public void addUtente(Utente utente){
@@ -64,7 +64,7 @@ public class Profilo {
         return tipoDiOferta;
     }
 
-    public List<Utente> getUtenti() {
+    public HashSet<Utente> getUtenti() {
         return utenti;
     }
 

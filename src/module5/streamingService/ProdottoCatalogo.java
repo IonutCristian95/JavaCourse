@@ -1,13 +1,13 @@
 package module5.streamingService;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.List;
 
 public abstract class ProdottoCatalogo {
     private String titolo;
     private int anno;
-    private List<String> cast;
+    private HashSet<String> cast;
     private Genere genere;
     private String pg;
     private boolean originale;
@@ -18,7 +18,7 @@ public abstract class ProdottoCatalogo {
     public ProdottoCatalogo(String titolo, int anno, Genere genere, String pg, boolean originale) {
         this.titolo = titolo;
         this.anno = anno;
-        this.cast = new ArrayList<>();
+        this.cast = new HashSet<>();
         this.genere = genere;
         this.pg = pg;
         this.originale = originale;
