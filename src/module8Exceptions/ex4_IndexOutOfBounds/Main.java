@@ -21,6 +21,7 @@ public class Main {
                 position = scanner.nextInt();
                 insertNumber(intArray, value, position);
                 System.out.println(Arrays.toString(intArray));
+                counter++;
             }
         }catch (InputMismatchException i){
             System.out.println("Input mismatch exception: " + i);
