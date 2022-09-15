@@ -1,7 +1,7 @@
-package module7;
+package Queue;
 
 
-public class Cliente {
+public class Cliente{
     private String nome;
     private String cognome;
     private int eta;
