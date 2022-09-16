@@ -50,14 +50,20 @@ public class Biblioteca {
         }
     }
 
+    //To Do
     public void searchBookByAuthor(Autore author){
         for (Autore autore : biblioteca.keySet()) {
             System.out.println(biblioteca.get(autore));
         }
     }
 
-    public void printBooksByAuthor(Autore author){
-
+    public void printBooksByAuthor(Autore author) throws AuthorNotFoundException{
+        if(biblioteca.getOrDefault(author, null)==null){
+            throw new AuthorNotFoundException(author);
+        }
+        for (Libro value : biblioteca.get(author).values()) {
+            System.out.print(value + "\n");
+        }
     }
 
     public void printLibrary(){

@@ -19,6 +19,10 @@ public class Main {
         biblioteca.insertBook(authorDG, metro2034);
         biblioteca.insertBook(authorDG, metro2035);
 
-
+        try{
+            biblioteca.printBooksByAuthor(authorDG);
+        } catch (AuthorNotFoundException anfe){
+            System.out.println(anfe.getMessage());
+        }
     }
 }

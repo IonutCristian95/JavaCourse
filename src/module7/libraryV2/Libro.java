@@ -17,4 +17,9 @@ public class Libro {
     public String getTitolo() { return titolo; }
     public Autore getAutore() { return autore; }
     public String getSinossi() { return sinossi; }
+
+    @Override
+    public String toString() {
+        return titolo + ": " + sinossi;
+    }
 }
