@@ -1,5 +1,7 @@
 package module7.libraryV2;
 
+import com.sun.source.tree.Tree;
+
 import java.util.HashMap;
 import java.util.TreeMap;
 
@@ -16,8 +18,12 @@ public class Biblioteca {
             return;
 
         HashMap<Autore, TreeMap<String, Libro>> bibliotecaTemp = biblioteca;
+        TreeMap<String, Libro> tempBook = new TreeMap<>();
+        tempBook.put(book.getTitolo(), book);
         if (bibliotecaTemp.containsKey(author)){
             bibliotecaTemp.get(author).put(book.getTitolo(), book);
+        }else{
+            bibliotecaTemp.put(author, tempBook);
         }
     }
 
@@ -61,12 +67,15 @@ public class Biblioteca {
         if(biblioteca.getOrDefault(author, null)==null){
             throw new AuthorNotFoundException(author);
         }
+        System.out.println(author);
         for (Libro value : biblioteca.get(author).values()) {
             System.out.print(value + "\n");
         }
     }
 
     public void printLibrary(){
-        System.out.println(biblioteca);
+        for (Autore autore : biblioteca.keySet()) {
+            System.out.println(autore + ": " + biblioteca.get(autore));
+        }
     }
 }

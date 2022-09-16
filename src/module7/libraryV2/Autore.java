@@ -12,7 +12,10 @@ public class Autore {
     @Override
     public boolean equals(Object obj) {
         Autore objAutore = (Autore) obj;
-        return this.nome.equals(objAutore.nome) && this.cognome.equals(objAutore.cognome);
+        if (this.nome.equals(objAutore.nome)){
+            return this.cognome.equals(objAutore.cognome);
+        }
+        return this.nome.equals(objAutore.nome);
     }
 
     @Override
