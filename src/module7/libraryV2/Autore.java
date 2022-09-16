@@ -14,4 +14,9 @@ public class Autore {
         Autore objAutore = (Autore) obj;
         return this.nome.equals(objAutore.nome) && this.cognome.equals(objAutore.cognome);
     }
+
+    @Override
+    public String toString() {
+        return nome + " " + cognome;
+    }
 }

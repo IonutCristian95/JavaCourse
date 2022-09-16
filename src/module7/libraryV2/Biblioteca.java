@@ -56,5 +56,11 @@ public class Biblioteca {
         }
     }
 
+    public void printBooksByAuthor(Autore author){
 
+    }
+
+    public void printLibrary(){
+        System.out.println(biblioteca);
+    }
 }
