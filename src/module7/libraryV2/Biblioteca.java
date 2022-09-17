@@ -1,18 +1,11 @@
 package module7.libraryV2;
 
-import com.sun.source.tree.Tree;
-
 import java.util.HashMap;
 import java.util.TreeMap;
 
 public class Biblioteca {
     public HashMap<Autore, TreeMap<String, Libro>> biblioteca = new HashMap<>();
 
-    /**
-     * inserimento di un Libro
-     * cancellazione di un Libro
-     * ricerca di un Libro a partire da codice, titolo o Autore
-     */
     public void insertBook(Autore author, Libro book){
         if (author==null || book==null)
             return;
@@ -34,33 +27,37 @@ public class Biblioteca {
         System.out.println("Book " + biblioteca.get(autore).remove(book.getTitolo()).getTitolo() + " is deleted.");
     }
 
-    public void searchBookByCode(String code){
+    public void searchBookByCode(String code) throws BookNotFoundException{
         for (Autore autore : biblioteca.keySet()) {
             for (Libro book : biblioteca.get(autore).values()) {
                 if (code.equals(book.getCodice())){
-                    System.out.println(book);
+                    System.out.println("Found: " + book);
                     return;
                 }
             }
         }
+        throw new BookNotFoundException();
     }
 
-    public void searchBookByTitle(String title){
+    public void searchBookByTitle(String title) throws BookNotFoundException{
+        boolean found = false;
         for (Autore autore : biblioteca.keySet()) {
             for (Libro book : biblioteca.get(autore).values()) {
-                if (title.equals(book.getTitolo())){
-                    System.out.println(book);
-                    return;
+                if (book.getTitolo().contains(title)){
+                    found = true;
+                    System.out.println("Found: " + book);
                 }
             }
         }
+
+        if(!found) throw new BookNotFoundException();
     }
 
-    //To Do
-    public void searchBookByAuthor(Autore author){
-        for (Autore autore : biblioteca.keySet()) {
-            System.out.println(biblioteca.get(autore));
+    public void searchBookByAuthor(Autore author) throws AuthorNotFoundException{
+        if(biblioteca.get(author)==null){
+            throw new AuthorNotFoundException(author);
         }
+        biblioteca.get(author).values().forEach(System.out::println);
     }
 
     public void printBooksByAuthor(Autore author) throws AuthorNotFoundException{
@@ -74,6 +71,7 @@ public class Biblioteca {
     }
 
     public void printLibrary(){
+        System.out.println("Library: ");
         for (Autore autore : biblioteca.keySet()) {
             System.out.println(autore + ": " + biblioteca.get(autore));
         }

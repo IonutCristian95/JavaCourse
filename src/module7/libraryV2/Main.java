@@ -15,16 +15,42 @@ public class Main {
         Biblioteca biblioteca = new Biblioteca();
         biblioteca.insertBook(authorAS, theWitcher1);
         biblioteca.insertBook(authorAS, theWitcher2);
-        biblioteca.insertBook(authorDG, metro2033);
-        biblioteca.insertBook(authorDG, metro2034);
         biblioteca.insertBook(authorDG, metro2035);
+        biblioteca.insertBook(authorDG, metro2034);
+        biblioteca.insertBook(authorDG, metro2033);
+        biblioteca.insertBook(authorHPL, callOfCthulhu);
 
         biblioteca.printLibrary();
 
         try{
             biblioteca.printBooksByAuthor(authorDG);
+
+            biblioteca.searchBookByAuthor(authorAS);
+            biblioteca.searchBookByCode("0A"); //Metro 2033
+            biblioteca.searchBookByTitle("Cthulhu"); //The Call of Cthulhu and Other Weird Stories
+
+            biblioteca.printBooksByAuthor(new Autore("Andrzej", "test"));
         } catch (AuthorNotFoundException anfe){
             System.out.println(anfe.getMessage());
+        } catch (BookNotFoundException bnfe){
+            System.out.println(bnfe.getMessage());
         }
+
+
+        try{
+            biblioteca.searchBookByCode("5F");
+        }catch (BookNotFoundException bnfe){
+            System.out.println(bnfe.getMessage());
+        }
+
+        try{
+            biblioteca.searchBookByAuthor(null);
+        }catch (AuthorNotFoundException anfe){
+            System.out.println(anfe.getMessage());
+        }
+
+        biblioteca.deleteBook(authorHPL, callOfCthulhu);
+        biblioteca.printLibrary();
+
     }
 }
