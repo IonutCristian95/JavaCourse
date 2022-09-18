@@ -54,6 +54,7 @@ public class Tinder {
                 userCommonInterests = utente1;
             }
         }
+        System.out.println("The user with common interests for " + utente.getFirstName() + " " + utente.getLastName() + " is: " + userCommonInterests);
         return userCommonInterests;
     }
 
@@ -79,17 +80,22 @@ public class Tinder {
             public int compare(Utente o1, Utente o2) {
                 if (tempUsers.get(o1) > tempUsers.get(o2)) return -1;
                 else if(tempUsers.get(o1) < tempUsers.get(o2)) return 1;
-                else return 0;
+                return -1; // Adds duplicate values, using return 0 keeps duplicate values out of the treeMap
             }
         });
 
-        ordered.putAll(tempUsers);
+        for (Utente utente1 : tempUsers.keySet()) {
+            ordered.put(utente1, tempUsers.get(utente1));
+        }
+
+        System.out.println("Best Matches for " + utente + ": ");
+        ordered.forEach((user, value) -> System.out.println(user + " common interests: " + value));
 
         return ordered;
     }
 
     private boolean isValidUser(Utente utente) throws UserNotFoundException{
-        if (utente == null || usersDataBase.size()>=1){
+        if (utente == null || usersDataBase.size()<=1){
             return false;
         }
         if (usersDataBase.get(utente)==null){

@@ -31,9 +31,6 @@ public class Utente {
 
     @Override
     public String toString() {
-        return "Utente{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+        return firstName + " " + lastName;
     }
 }
