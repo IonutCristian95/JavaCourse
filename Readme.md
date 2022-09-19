@@ -1,6 +1,6 @@
 # Intensive 200 Hours Java Course
 <hr >
-<h3>Modules:<h3>
+<h3>Modules:</h3>
 
 <ul>
 <li>Fondamenti di programmazione Java</li>
