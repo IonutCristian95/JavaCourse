@@ -26,22 +26,16 @@ public class ValidParentheses {
     private static boolean isValid(String string){
         Stack<Character> stack = new Stack<>();
 
-        Map<Integer, Character> openParentheses = Stream.of(new Object[][] {
-                { 0, '('},
-                { 1, '['},
-                { 2, '{'}
-        }).collect(Collectors.toMap(data -> (Integer) data[0], data -> (Character) data[1]));
-
-        Map<Character, Integer> closeParentheses = Stream.of(new Object[][] {
-                { ')', 0},
-                { ']', 1},
-                { '}', 2}
-        }).collect(Collectors.toMap(data -> (Character) data[0], data -> (Integer) data[1]));
+        Map<Character, Character> parentheses = Stream.of(new Object[][] {
+                { ')', '('},
+                { ']', '['},
+                { '}', '{'}
+        }).collect(Collectors.toMap(data -> (Character) data[0], data -> (Character) data[1]));
 
         try{
             for(int counter = 0; counter < string.length(); counter++){
-                if (closeParentheses.containsKey(string.charAt(counter)) &&
-                        stack.peek().equals(openParentheses.get(closeParentheses.get(string.charAt(counter))))){
+                if (parentheses.containsKey(string.charAt(counter)) &&
+                        stack.peek().equals(parentheses.get(string.charAt(counter)))){
                     stack.pop();
                 }else{
                     stack.add(string.charAt(counter));
