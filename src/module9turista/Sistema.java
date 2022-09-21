@@ -15,4 +15,5 @@ public class Sistema {
      * Nota: gestite tutto con le collection, nessun database (per ora!)
      */
 
+
 }
